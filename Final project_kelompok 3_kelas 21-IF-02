@@ -1,0 +1,249 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+int main()
+{
+	//Deklrasi variabel
+
+	string utama[6][2][2][9];
+	string Gedung[2] = { "Gedung 1   " , "Gedung 2   " };
+	string Lapangan[2] = { "Lapangan Timur   " , "Lapangan Barat   " };
+	string Hari[6] = { "Senin     " , "selasa    " , "Rabu      " , "Kamis     " , "Sabtu     " , "Minggu    " };
+	string jam[9] = { "08.00 - 09.00" , "09.30 - 10.30" , "11.00 - 12.00" , "13.00 - 14.00" , "14.30 - 15.30" , "16.00 - 17.00" , "17.30 - 18.30" , "19.00 - 20.00" , "20.30 - 21.30" };
+	int Harga = 20000;
+
+	for (int a = 0; a < 6; a++) {
+		for (int b = 0; b < 2; b++) {
+			for (int c = 0; c < 2; c++) {
+				for (int d = 0; d < 9; d++) {
+					utama[a][b][c][d] = jam[d];
+				}
+			}
+		}
+	}
+
+	int G;
+	int Lp;
+	int hr;
+	string jm[9];
+	int X;
+	int jj;
+	int jumlahjam;
+	int HH;
+	int Total;
+	int Tot;
+	int Profit = 0;
+	int paket;
+	int batas_paket = 0;
+
+
+	//Tampilan awal
+AWAL:
+	cout << "+=================================+" << endl;
+	cout << "|   PEMESANAN LAPANGAN BADMINTON  |" << endl;
+	cout << "|         GOR CEMARA INDAH        |" << endl;
+	cout << "+=================================+" << endl;
+	cout << "  _______________________________  " << endl;
+	cout << "       jln.Raya Tajem Maguwo        " << endl;
+	cout << "            YOGYAKARTA              " << endl;
+	cout << "                                    " << endl;
+	cout << "    ____________________________    " << endl;
+	cout << "   |         KELOMPOK 3         |   " << endl;
+	cout << "    ----------------------------    " << endl;
+	cout << endl;
+	cout << "      TEKAN ENTER UNTUK LANJUT      " << endl;
+	cout << "+=================================+";
+	cin.get();
+	system("cls");
+
+	//Tampian beranda pemesanan
+	//pertama pemesanan Hari main
+beranda:
+ulangi1:
+	cout << "+=================================+" << endl;
+	cout << "|   PEMESANAN LAPANGAN BADMINTON  |" << endl;
+	cout << "|         GOR CEMARA INDAH        |" << endl;
+	cout << "+=================================+" << endl;
+	cout << endl;
+	//menggunakan perulangan for untuk menampilkan pilihan hari
+	for (int i = 0; i < 6; i++) {
+		cout << " |  " << i + 1 << ". " << Hari[i] << endl;
+	}
+	//input data hari yang diinginkan pemesan
+	cout << endl;
+	cout << "PILIH HARI YANG ANDA INGINKAN [1-6] : ";
+	cin >> hr;
+	//menggunakan percabangan if untuk validasi jika terjadi  kesalahan input
+	if (hr >= 7) {
+		system("cls");
+		cout << endl;
+		cout << "      INPUT SALAH COBA LAGI ";
+		cout << endl;
+		goto ulangi1;
+	}
+	system("cls");
+
+
+
+	//yang kedua ada pemesanan gedung 
+ulangi2:
+	cout << "+=================================+" << endl;
+	cout << "|   PEMESANAN LAPANGAN BADMINTON  |" << endl;
+	cout << "|         GOR CEMARA INDAH        |" << endl;
+	cout << "+=================================+" << endl;
+	cout << endl;
+	//menggunnakan perulangan for untuk untuk menampilkan pilihan Gedung
+	for (int i = 0; i < 2; i++) {
+		cout << i + 1 << ". " << Gedung[i] << endl;
+	}
+	//input data yang diinginkan pemesan
+	cout << endl;
+	cout << "PILIH GEDUNG YANG ANDA INGINKAN [1-2] : ";
+	cin >> G;
+	//menggunakan percabangan if untuk validasi jika terjadi kesalahn input
+	if (G >= 3) {
+		system("cls");
+		cout << endl;
+		cout << "   INPUT SALAH COBA LAGI ";
+		cout << endl;
+		goto ulangi2;
+	}
+	system("cls");
+
+
+	//yang ketiga ada pemesanan lapangan 
+ulangi3:
+	cout << "+=================================+" << endl;
+	cout << "|   PEMESANAN LAPANGAN BADMINTON  |" << endl;
+	cout << "|         GOR CEMARA INDAH        |" << endl;
+	cout << "+=================================+" << endl;
+	cout << endl;
+	//menggunakan perulangan for untuk menampilkan pilihan Lapangan
+	for (int i = 0; i < 2; i++) {
+		cout << i + 1 << ". " << Lapangan[i] << endl;
+	}
+	//input data yang diinginkan pemesan
+	cout << endl;
+	cout << "PILIH Lapanga YANG ANDA INGINKAN [1-2] : ";
+	cin >> Lp;
+	//menggunakan percabangan if untuk validasi jika terjadi kesalahn input
+	if (Lp >= 3) {
+		system("cls");
+		cout << endl;
+		cout << "   INPUT SALAH COBA LAGI ";
+		cout << endl;
+		goto ulangi3;
+	}
+	system("cls");
+
+
+
+	//yang kelima ada pemesanan waktu main
+ulangi4:
+	//mendeklarasikan variabel batas_paket sebagai sisa paket yang tersedia/batas paket yang tersedia
+	batas_paket = 0;
+	//menggunakan perulangan for yang jika pemesanan sebelumnya telah HABIS maka nilai batas_paket terulang
+	for (int i = 0; i < 9; i++) {
+		if (utama[hr - 1][G - 1][Lp - 1][i] != "HABIS!!!") {
+			batas_paket++;
+		}
+	}
+	cout << "+=================================+" << endl;
+	cout << "|   PEMESANAN LAPANGAN BADMINTON  |" << endl;
+	cout << "|         GOR CEMARA INDAH        |" << endl;
+	cout << "+=================================+" << endl;
+	cout << endl;
+	cout << "           1 PAKET                     = 90 MENIT " << endl;
+	cout << "           HARGA                       = Rp.20.000" << endl;
+	cout << "           SISA PAKET " << Lapangan[Lp - 1] << " = " << batas_paket << " PAKET" << endl;
+	cout << endl;
+	//input data yang diinginkan pemesan
+	cout << "           BERAPA PAKET JAM YANG INGIN DIBELI : ";
+
+	cin >> paket;
+	system("cls");
+	//menggunakan percabangan if untuk validasi jika terjadi kesalahan input
+	if (paket > batas_paket) {
+		cout << endl;
+		cout << "JUMLAH MELEBIHI PAKET YANG TERSEDIA. ULANGI!!!" << endl;
+		cout << endl;
+		goto ulangi4;
+	}
+	//keenam ada pemesanan paket jam main
+ulangi5:
+	cout << "+=================================+" << endl;
+	cout << "|   PEMESANAN LAPANGAN BADMINTON  |" << endl;
+	cout << "|         GOR CEMARA INDAH        |" << endl;
+	cout << "+=================================+" << endl;
+	cout << endl;
+	//menggunakan perulangan for untuk pemilihan paket jam main
+	for (int i = 0; i < 9; i++) {
+		cout << i + 1 << ". " << utama[hr - 1][G - 1][Lp - 1][i] << endl;
+	}
+	//menampilkan berapa banayak jumlah paket yang sudah dipesan
+	cout << "PILIH JAM YANG ANDA INGINKAN. [total " << paket << " Paket] :" << endl;
+	//menggunakan perulangan for untuk menginput data pe ke-berapa saja yang akan di pesan
+	for (int i = 0; i < paket; i++) {
+	ulangi51:
+		cout << "paket ke-" << i + 1 << " : ";
+		cin >> jj;
+		//menggunakan percabangan if jika penginputan pemilihan paket melebihi dari 9
+		//			akan menampilkan kata INPUT SALAH COBA LAGI.setelah itu akan kembali ke variabel 
+		//			ulang 51
+		if (jj >= 9) {
+			system("cls");
+			cout << endl;
+			cout << "   INPUT SALAH COBA LAGI ";
+			cout << endl;
+			goto ulangi51;
+		}
+		//menggunakan percabangan if jika paet yang spilih telah habis maka akan menampilkan 
+		//		PAKET "YANG KE-"TELAH HABIS. ULANGI!!
+		//		dan akan kembali ke variabel ulangi 51
+		else if (utama[hr - 1][G - 1][Lp - 1][jj - 1] == "HABIS!!!") {
+			cout << endl;
+			cout << "PAKET (" << jam[jj] << ") TELAH HABIS. ULANGI!!!" << endl;
+			cout << endl;
+			goto ulangi51;
+		}
+		//jika nilai  variabel dalm kode dibawah terpenuhi maka nilai jm[i] akan diganti menjadi kata "HABIS"
+		jm[i] = utama[hr - 1][G - 1][Lp - 1][jj - 1];
+		utama[hr - 1][G - 1][Lp - 1][jj - 1] = "HABIS!!!";
+	}system("cls");
+	//total pemesanan
+	cout << "------------------------------------" << endl;
+	cout << "TOTAL PESANAN ANDA                  " << endl;
+	cout << "+-----------------------------------" << endl;
+	cout << "Hari     : " << Hari[hr - 1] << "               " << endl;
+	cout << "Gedung   : " << Gedung[G - 1] << "              " << endl;
+	cout << "Lapangan : " << Lapangan[Lp - 1] << "        " << endl;
+	cout << "jam      : ";
+	//menggunakan perulangan for untuk menmpilkan nilai jm[i] pada karakter "jam       : "
+	for (int i = 0; i < paket; i++) {
+		cout << i + 1 << ". " << jm[i] << endl << "           ";
+	}
+	cout << endl;
+	cout << "------------------------------------" << endl;
+	cout << " TOTAL    :  " << "Rp. " << paket * Harga << endl;
+	cout << "------------------------------------" << endl;
+	//mendeklarasika variabel Total sebagai total pemesana dengan memberi nila paket * harga
+	Total = paket * Harga;
+	Profit = Total;
+	//menampilkan jumlah profit 
+	cout << "Profit: Rp." << Profit;
+	cout << endl;
+	cout << endl;
+	cout << "+==================================+" << endl;
+	cout << "|  TERIMA KASIH ATAS PEMESANANNYA  |" << endl;
+	cout << "+----------------------------------+" << endl;
+	cout << "|         TEKAN ENTER........      |" << endl;
+	cout << "+==================================+" << endl;
+	cin.get();
+	cin.get();
+
+
+
+	system("cls");
+	goto AWAL;
+}
